@@ -2,7 +2,14 @@ import SwiftUI
 
 struct JourCard: View {
     let jour: Jour
+    
+    let fr_FR = Locale(identifier: "fr_FR")
 
+    if let script = fr_FR.language.script {
+        let enUS = Locale(identifier: "en-US")
+        let localizedScript = enUS.localizedString(forScript: script) // "Simplified Han"
+    }
+        
     var body: some View {
         Section {
             ligneRepas(jour.midi, type: .midi)
@@ -13,6 +20,7 @@ struct JourCard: View {
                 Text(jour.date.formatted(.dateTime.weekday(.wide).day().month(.wide)))
                     .textCase(nil)
                     .font(.headline)
+                    
                 if jour.estWeekEnd {
                     Text("Week-end")
                         .font(.caption.bold())

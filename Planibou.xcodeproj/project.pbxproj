@@ -35,6 +35,14 @@
 		7351EE1330852C020015B175 /* SemaineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemaineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		7351EE21308547DB0015B175 /* Notification */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Notification;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		000000000000000130000000 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -74,6 +82,7 @@
 		7351EE0D30852C020015B175 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7351EE21308547DB0015B175 /* Notification */,
 				7351EE0730852C020015B175 /* Activite.swift */,
 				7351EE0830852C020015B175 /* ArticleCourses.swift */,
 				7351EE0930852C020015B175 /* Jour.swift */,
@@ -130,6 +139,9 @@
 				000000000000000140000000 /* Resources */,
 			);
 			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				7351EE21308547DB0015B175 /* Notification */,
 			);
 			name = Planibou;
 			productName = MyApp;
