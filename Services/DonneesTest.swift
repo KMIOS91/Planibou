@@ -10,8 +10,12 @@ enum DonneesTest {
         Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 12))!
     }()
 
-    static func charger(dans context: ModelContext) {
+    static func charger(in context: ModelContext) {
         // On repart de zéro à chaque chargement
+        
+        for jour in ( try? context.fetch(FetchDescriptor<jour>()) ?? [] {
+            context.delete(model: jour)
+        }
         try? context.delete(model: Jour.self)
         try? context.delete(model: Lieu.self)
 

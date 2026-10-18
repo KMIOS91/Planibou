@@ -44,7 +44,7 @@ struct SemaineView: View {
                 #if DEBUG
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Données de test", systemImage: "wand.and.stars") {
-                        DonneesTest.charger(dans: context)
+                        DonneesTest.charger(in: context)
                         lundi = DonneesTest.lundi
                     }
                 }
