@@ -6,17 +6,34 @@
 	objectVersion = 90;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7351EE1630852C020015B175 /* Jour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0930852C020015B175 /* Jour.swift */; };
+		7351EE1730852C020015B175 /* JourCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE1230852C020015B175 /* JourCard.swift */; };
+		7351EE1830852C020015B175 /* DonneesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0E30852C020015B175 /* DonneesTest.swift */; };
+		7351EE1930852C020015B175 /* ProfilBebe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0B30852C020015B175 /* ProfilBebe.swift */; };
+		7351EE1A30852C020015B175 /* PlanningBebeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0530852C020015B175 /* PlanningBebeApp.swift */; };
+		7351EE1B30852C020015B175 /* Repas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0C30852C020015B175 /* Repas.swift */; };
+		7351EE1C30852C020015B175 /* Lieu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0A30852C020015B175 /* Lieu.swift */; };
+		7351EE1D30852C020015B175 /* Activite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0730852C020015B175 /* Activite.swift */; };
+		7351EE1E30852C020015B175 /* StatutBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE1030852C020015B175 /* StatutBadge.swift */; };
+		7351EE1F30852C020015B175 /* SemaineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE1330852C020015B175 /* SemaineView.swift */; };
+		7351EE2030852C020015B175 /* ArticleCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0830852C020015B175 /* ArticleCourses.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		000000000000000000000120 /* Planibou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planibou.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7351EE0530852C020015B175 /* PlanningBebeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningBebeApp.swift; sourceTree = "<group>"; };
+		7351EE0730852C020015B175 /* Activite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activite.swift; sourceTree = "<group>"; };
+		7351EE0830852C020015B175 /* ArticleCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCourses.swift; sourceTree = "<group>"; };
+		7351EE0930852C020015B175 /* Jour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jour.swift; sourceTree = "<group>"; };
+		7351EE0A30852C020015B175 /* Lieu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lieu.swift; sourceTree = "<group>"; };
+		7351EE0B30852C020015B175 /* ProfilBebe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilBebe.swift; sourceTree = "<group>"; };
+		7351EE0C30852C020015B175 /* Repas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repas.swift; sourceTree = "<group>"; };
+		7351EE0E30852C020015B175 /* DonneesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonneesTest.swift; sourceTree = "<group>"; };
+		7351EE1030852C020015B175 /* StatutBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatutBadge.swift; sourceTree = "<group>"; };
+		7351EE1230852C020015B175 /* JourCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourCard.swift; sourceTree = "<group>"; };
+		7351EE1330852C020015B175 /* SemaineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemaineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		000000000000000000000010 /* Planibou */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Planibou;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		000000000000000130000000 /* Frameworks */ = {
@@ -30,7 +47,10 @@
 		000000000000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				000000000000000000000010 /* Planibou */,
+				7351EE0630852C020015B175 /* App */,
+				7351EE0D30852C020015B175 /* Models */,
+				7351EE0F30852C020015B175 /* Services */,
+				7351EE1530852C020015B175 /* Views */,
 				000000000000000000000020 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +61,61 @@
 				000000000000000000000120 /* Planibou.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7351EE0630852C020015B175 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7351EE0530852C020015B175 /* PlanningBebeApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		7351EE0D30852C020015B175 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7351EE0730852C020015B175 /* Activite.swift */,
+				7351EE0830852C020015B175 /* ArticleCourses.swift */,
+				7351EE0930852C020015B175 /* Jour.swift */,
+				7351EE0A30852C020015B175 /* Lieu.swift */,
+				7351EE0B30852C020015B175 /* ProfilBebe.swift */,
+				7351EE0C30852C020015B175 /* Repas.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7351EE0F30852C020015B175 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7351EE0E30852C020015B175 /* DonneesTest.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7351EE1130852C020015B175 /* Composants */ = {
+			isa = PBXGroup;
+			children = (
+				7351EE1030852C020015B175 /* StatutBadge.swift */,
+			);
+			path = Composants;
+			sourceTree = "<group>";
+		};
+		7351EE1430852C020015B175 /* Semaine */ = {
+			isa = PBXGroup;
+			children = (
+				7351EE1230852C020015B175 /* JourCard.swift */,
+				7351EE1330852C020015B175 /* SemaineView.swift */,
+			);
+			path = Semaine;
+			sourceTree = "<group>";
+		};
+		7351EE1530852C020015B175 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7351EE1130852C020015B175 /* Composants */,
+				7351EE1430852C020015B175 /* Semaine */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,9 +130,6 @@
 				000000000000000140000000 /* Resources */,
 			);
 			buildRules = (
-			);
-			fileSystemSynchronizedGroups = (
-				000000000000000000000010 /* Planibou */,
 			);
 			name = Planibou;
 			productName = MyApp;
@@ -110,6 +182,17 @@
 		000000000000000120000000 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				7351EE1630852C020015B175 /* Jour.swift in Sources */,
+				7351EE1730852C020015B175 /* JourCard.swift in Sources */,
+				7351EE1830852C020015B175 /* DonneesTest.swift in Sources */,
+				7351EE1930852C020015B175 /* ProfilBebe.swift in Sources */,
+				7351EE1A30852C020015B175 /* PlanningBebeApp.swift in Sources */,
+				7351EE1B30852C020015B175 /* Repas.swift in Sources */,
+				7351EE1C30852C020015B175 /* Lieu.swift in Sources */,
+				7351EE1D30852C020015B175 /* Activite.swift in Sources */,
+				7351EE1E30852C020015B175 /* StatutBadge.swift in Sources */,
+				7351EE1F30852C020015B175 /* SemaineView.swift in Sources */,
+				7351EE2030852C020015B175 /* ArticleCourses.swift in Sources */,
 			);
 		};
 /* End PBXSourcesBuildPhase section */
