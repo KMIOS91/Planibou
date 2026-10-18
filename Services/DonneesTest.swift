@@ -13,11 +13,12 @@ enum DonneesTest {
     static func charger(in context: ModelContext) {
         // On repart de zéro à chaque chargement
         
-        for jour in ( try? context.fetch(FetchDescriptor<jour>()) ?? [] {
-            context.delete(model: jour)
+        for jour in (try? context.fetch(FetchDescriptor<Jour>())) ?? [] {
+            context.delete(jour)
         }
-        try? context.delete(model: Jour.self)
-        try? context.delete(model: Lieu.self)
+        for lieu in  (try? context.fetch(FetchDescriptor<Lieu>())) ?? [] {
+            context.delete(lieu)
+        }
 
         let maison = Lieu(nom: "Activités à la maison",
                           adresse: "Chez toi",
