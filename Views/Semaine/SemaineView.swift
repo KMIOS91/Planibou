@@ -3,6 +3,7 @@ import SwiftData
 
 struct SemaineView: View {
     @Environment(\.modelContext) private var context
+    @State private var scriptAffiche: String = "Chargement..."
 
     /// Toutes les journées, triées. On filtre la semaine affichée en mémoire :
     /// largement suffisant pour un MVP (quelques dizaines de jours).
@@ -29,6 +30,18 @@ struct SemaineView: View {
                         JourCard(jour: jour)
                     }
                 }
+            }
+            .onAppear{
+                
+                // Appel direct et synchrone (pas besoin de 'task')
+                            let resultat = ScriptIdentifier.localizedScript(for: "fr_FR", in: "en-US")
+                            
+                            // Mise à jour de l'interface
+                            self.scriptAffiche = resultat
+                            
+                            // Optionnel : l'afficher aussi dans la console de debug
+                            print("Script localisé : \(resultat)")
+                
             }
             .listStyle(.insetGrouped)
             .navigationTitle(titreSemaine)

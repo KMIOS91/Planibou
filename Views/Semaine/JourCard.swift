@@ -2,7 +2,8 @@ import SwiftUI
 
 struct JourCard: View {
     let jour: Jour
-       
+    @State private var scriptAffiche: String = "Chargement..."
+
     var body: some View {
       
         
@@ -16,6 +17,7 @@ struct JourCard: View {
                     .textCase(nil)
                     .font(.headline)
                     
+                    
                 if jour.estWeekEnd {
                     Text("Week-end")
                         .font(.caption.bold())
@@ -27,24 +29,19 @@ struct JourCard: View {
         }
         .onAppear{
             
-            checkScript()
-        }
-    }
-
-    
-    private func checkScript() {
-        let fr_FR = Locale(identifier: "fr_FR")
-        
-        // Forcer la récupération sous forme de String pure
-        if let scriptIdentifier = fr_FR.language.script?.identifier {
-            let enUS = Locale(identifier: "en-US")
+            // Appel direct et synchrone (pas besoin de 'task')
+                        let resultat = ScriptIdentifier.localizedScript(for: "fr_FR", in: "en-US")
+                        
+                        // Mise à jour de l'interface
+                        self.scriptAffiche = resultat
+                        
+                        // Optionnel : l'afficher aussi dans la console de debug
+                        print("Script localisé : \(resultat)")
             
-            // Swift trouve maintenant le match exact car scriptIdentifier est explicitement une String
-            let localizedScript = enUS.localizedString(forScriptCode: scriptIdentifier)
-            print(localizedScript ?? "inconnu")
         }
     }
 
+   
     
     private func ligneRepas(_ repas: Repas?, type: TypeRepas) -> some View {
         LabeledContent {
