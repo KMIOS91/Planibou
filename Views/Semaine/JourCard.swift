@@ -2,11 +2,7 @@ import SwiftUI
 
 struct JourCard: View {
     let jour: Jour
-    
-
-    
-   
-   
+       
     var body: some View {
       
         

@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import SwiftData
 @MainActor
 @Observable
 
 final class NotificationService {
-    private let observer: ResultObserver<Activite>
-
-    init(modelContext: ModelContext) throws {
-        observer = try ResultObserver<Activite>(modelContext: modelContext)
-        // + filtre / tri comme un @Query,
-        // + une observation qui relance la programmation des rappels à chaque changement
-    }
+//    private let observer: ResultObserver<Activite>
+//
+//    init(modelContext: ModelContext) throws {
+//        observer = try ResultObserver<Activite>(modelContext: modelContext)
+//        // + filtre / tri comme un @Query,
+//        // + une observation qui relance la programmation des rappels à chaque changement
+//    }
 }
