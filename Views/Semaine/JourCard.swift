@@ -3,14 +3,13 @@ import SwiftUI
 struct JourCard: View {
     let jour: Jour
     
-    let fr_FR = Locale(identifier: "fr_FR")
 
-    if let script = fr_FR.language.script {
-        let enUS = Locale(identifier: "en-US")
-        let localizedScript = enUS.localizedString(forScript: script) // "Simplified Han"
-    }
-        
+    
+   
+   
     var body: some View {
+      
+        
         Section {
             ligneRepas(jour.midi, type: .midi)
             ligneRepas(jour.gouter, type: .gouter)
@@ -30,8 +29,27 @@ struct JourCard: View {
                 }
             }
         }
+        .onAppear{
+            
+            checkScript()
+        }
     }
 
+    
+    private func checkScript() {
+        let fr_FR = Locale(identifier: "fr_FR")
+        
+        // Forcer la récupération sous forme de String pure
+        if let scriptIdentifier = fr_FR.language.script?.identifier {
+            let enUS = Locale(identifier: "en-US")
+            
+            // Swift trouve maintenant le match exact car scriptIdentifier est explicitement une String
+            let localizedScript = enUS.localizedString(forScriptCode: scriptIdentifier)
+            print(localizedScript ?? "inconnu")
+        }
+    }
+
+    
     private func ligneRepas(_ repas: Repas?, type: TypeRepas) -> some View {
         LabeledContent {
             Text(repas?.intitule ?? "—")
