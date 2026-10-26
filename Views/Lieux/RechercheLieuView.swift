@@ -20,6 +20,9 @@ struct RechercheLieuView: View {
     @State private var autocompletion = AutocompletionLieux()
     @State private var ajoutEnCours = false
 
+    /// Optionnel : prévient l'écran parent du lieu qui vient d'être ajouté.
+    var surAjout: ((Lieu) -> Void)? = nil
+
     var body: some View {
         NavigationStack {
             List(autocompletion.suggestions, id: \.self) { suggestion in
@@ -93,6 +96,7 @@ struct RechercheLieuView: View {
                             details: "")
             lieu.mapItemIdentifier = item.identifier
             context.insert(lieu)
+            surAjout?(lieu)   // "voilà le lieu que j'ai créé"
             dismiss()
         } catch {
             print("Recherche échouée : \(error.localizedDescription)")

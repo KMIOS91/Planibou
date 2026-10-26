@@ -5,7 +5,7 @@ struct SemaineView: View {
     @State private var afficherRecherche = false
     @Environment(\.modelContext) private var context
     @State private var scriptAffiche: String = "Chargement..."
-
+    @State private var afficherAjout = false 
     /// Toutes les journées, triées. On filtre la semaine affichée en mémoire :
     /// largement suffisant pour un MVP (quelques dizaines de jours).
     @Query(sort: \Jour.date)
