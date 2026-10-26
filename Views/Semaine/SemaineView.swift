@@ -1,6 +1,18 @@
 import SwiftUI
 import SwiftData
 
+
+enum FeuilleSemaine: Identifiable {
+    case ajoutActivite
+    case rechercheLieu
+
+    var id: Self { self }   // Identifiable : chaque cas est son propre id
+}
+
+
+
+
+
 struct SemaineView: View {
     @State private var afficherRecherche = false
     @Environment(\.modelContext) private var context
