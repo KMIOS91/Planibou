@@ -51,6 +51,12 @@ struct AjoutActiviteView: View {
                     .pickerStyle(.segmented)
 
                     DatePicker("Heure", selection: $heure, displayedComponents: .hourAndMinute)
+                    
+                    Picker("Durée", selection: $dureeMinutes) {
+                        ForEach([30, 45, 60, 90, 120, 180], id: \.self) { minutes in
+                            Text(Horaire.duree(minutes)).tag(minutes)
+                        }
+                    }
                 }
 
                 // 3. Où ?
@@ -116,8 +122,10 @@ struct AjoutActiviteView: View {
         let activite = Activite(titre: titre.trimmingCharacters(in: .whitespaces),
                                 moment: moment,
                                 heure: texteHeure,
+                                dureeMinutes: dureeMinutes,   // ← nouveau
                                 statut: statut,
                                 lieu: lieu)
+        
         context.insert(activite)
         jour.activite = activite
         dismiss()
