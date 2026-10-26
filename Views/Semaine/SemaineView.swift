@@ -5,7 +5,7 @@ struct SemaineView: View {
     @State private var afficherRecherche = false
     @Environment(\.modelContext) private var context
     @State private var scriptAffiche: String = "Chargement..."
-    @State private var afficherAjout = false 
+    @State private var afficherAjout = false
     /// Toutes les journées, triées. On filtre la semaine affichée en mémoire :
     /// largement suffisant pour un MVP (quelques dizaines de jours).
     @Query(sort: \Jour.date)
@@ -48,6 +48,12 @@ struct SemaineView: View {
             .listStyle(.insetGrouped)
             .navigationTitle(titreSemaine)
             .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Ajouter", systemImage: "plus") {
+                        afficherAjout = true
+                    }
+                }
+                
                 ToolbarItem(placement: .bottomBar) {
                     Button("Ajouter un lieu", systemImage: "mappin.and.ellipse") {
                         afficherRecherche = true
@@ -70,6 +76,9 @@ struct SemaineView: View {
                     }
                 }
                 #endif
+            }
+            .sheet(isPresented: $afficherAjout) {
+                AjoutActiviteView(dateInitiale: lundi)
             }
             .sheet(isPresented: $afficherRecherche) {
                 RechercheLieuView()
