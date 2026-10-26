@@ -59,7 +59,7 @@ struct JourCard: View {
                             fin: Horaire.texte(fin),
                             duree: Horaire.duree(fin - debut),
                             couleur: repas.type == .midi ? .sable : .ardoise) {
-            IconeRonde(systemName: repas.type == .midi ? "fork.knife" : "carrot")
+            IconeRonde(systemName: repas.type == .midi ? "fork.knife" : "birthday.cake")
         }
     }
 

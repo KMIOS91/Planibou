@@ -3,7 +3,6 @@ import SwiftData
 
 enum FeuilleSemaine: Identifiable {
     case ajoutActivite
-    case rechercheLieu
 
     var id: Self { self }
 }
@@ -38,9 +37,8 @@ struct SemaineView: View {
                 ToolbarItemGroup(placement: .topBarLeading) {
                     boutonsSemaine
                 }
-                ToolbarItemGroup(placement: .primaryAction) {
+                ToolbarItem(placement: .primaryAction) {
                     Button("Ajouter", systemImage: "plus") { feuille = .ajoutActivite }
-                    Button("Lieu", systemImage: "mappin") { feuille = .rechercheLieu }
                 }
                 #if DEBUG
                 ToolbarItem(placement: .topBarTrailing) {
@@ -49,12 +47,11 @@ struct SemaineView: View {
                         lundi = DonneesTest.lundi
                     }
                 }
-                #endif
+#endif // DEBUG
             }
             .sheet(item: $feuille) { feuille in
                 switch feuille {
                 case .ajoutActivite: AjoutActiviteView(dateInitiale: lundi)
-                case .rechercheLieu: RechercheLieuView()
                 }
             }
             // À chaque changement de semaine : les 7 jours existent, même vides
@@ -66,8 +63,19 @@ struct SemaineView: View {
 
     private var titreSemaine: String {
         let fin = Calendar.current.date(byAdding: .day, value: 6, to: lundi)!
-        let f = Date.FormatStyle(locale: Locale(identifier: "fr_FR")).day().month(.abbreviated)
-        return "\(lundi.formatted(f)) – \(fin.formatted(f))"
+        let fr = Locale(identifier: "fr_FR")
+
+        let jour = Date.FormatStyle(locale: fr).day()                         // "12"
+        let jourMois = Date.FormatStyle(locale: fr).day().month(.abbreviated) // "18 oct."
+
+        // Le lundi et le dimanche sont-ils dans le même mois ?
+        let memeMois = Calendar.current.isDate(lundi, equalTo: fin, toGranularity: .month)
+
+        if memeMois {
+            return "\(lundi.formatted(jour))–\(fin.formatted(jourMois))"      // "12–18 oct."
+        } else {
+            return "\(lundi.formatted(jourMois)) – \(fin.formatted(jourMois))" // "26 oct. – 1 nov."
+        }
     }
 
     private func changerSemaine(de nombre: Int) {
