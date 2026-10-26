@@ -7,7 +7,8 @@ struct SemaineView: View {
 
     /// Toutes les journées, triées. On filtre la semaine affichée en mémoire :
     /// largement suffisant pour un MVP (quelques dizaines de jours).
-    @Query(sort: \Jour.date) private var jours: [Jour]
+    @Query(sort: \Jour.date)
+    private var jours: [Jour]
 
     @State private var lundi: Date = Date.now.lundiDeLaSemaine
 

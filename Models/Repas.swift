@@ -14,7 +14,7 @@ enum TypeRepas: String, Codable, CaseIterable {
 
     var heure: String {
         switch self {
-        case .midi: "11h–12h"
+        case .midi: "11h–13h"
         case .gouter: "16h"
         }
     }
