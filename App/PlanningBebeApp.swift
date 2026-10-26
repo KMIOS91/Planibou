@@ -6,6 +6,7 @@ struct PlanningBebeApp: App {
     var body: some Scene {
         WindowGroup {
             SemaineView()
+                .environment(\.locale, Locale(identifier: "fr_FR"))
         }
         // Un seul conteneur SwiftData pour toute l'app
         .modelContainer(for: [

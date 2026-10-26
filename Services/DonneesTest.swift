@@ -1,7 +1,7 @@
 #if DEBUG
 import Foundation
 import SwiftData
-
+import MapKit
 /// Semaine du 12 au 18 octobre, reprise du planning de ta sœur.
 /// Pratique pour développer les écrans sans tout saisir à la main.
 enum DonneesTest {
@@ -16,8 +16,8 @@ enum DonneesTest {
         for jour in (try? context.fetch(FetchDescriptor<Jour>())) ?? [] {
             context.delete(jour)
         }
-        for lieu in  (try? context.fetch(FetchDescriptor<Lieu>())) ?? [] {
-            context.delete(lieu)
+        for lieu in  (try? context.fetch(FetchDescriptor<Lieu>())) ?? [] where lieu.mapItemIdentifier == nil  {
+                context.delete(lieu)
         }
 
         let maison = Lieu(nom: "Activités à la maison",
@@ -69,7 +69,11 @@ enum DonneesTest {
             jour.activite = activite
         }
 
-        try? context.save()
-    }
+        do {
+            try context.save()
+            print("✅ Données de test chargées")
+        } catch {
+            print("❌ Erreur : \(error)")
+        }    }
 }
 #endif

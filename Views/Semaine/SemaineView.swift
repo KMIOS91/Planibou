@@ -1,13 +1,20 @@
 import SwiftUI
 import SwiftData
 
+enum FeuilleSemaine: Identifiable {
+    case ajoutActivite
+    case rechercheLieu
+
+    var id: Self { self }
+}
+
 struct SemaineView: View {
     @Environment(\.modelContext) private var context
 
-    /// Toutes les journées, triées. On filtre la semaine affichée en mémoire :
-    /// largement suffisant pour un MVP (quelques dizaines de jours).
-    @Query(sort: \Jour.date) private var jours: [Jour]
+    @Query(sort: \Jour.date)
+    private var jours: [Jour]
 
+    @State private var feuille: FeuilleSemaine?
     @State private var lundi: Date = Date.now.lundiDeLaSemaine
 
     private var joursDeLaSemaine: [Jour] {
@@ -17,29 +24,23 @@ struct SemaineView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                if joursDeLaSemaine.isEmpty {
-                    ContentUnavailableView(
-                        "Semaine vide",
-                        systemImage: "calendar.badge.plus",
-                        description: Text("Rien de prévu pour l'instant.")
-                    )
-                } else {
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 32) {
                     ForEach(joursDeLaSemaine) { jour in
                         JourCard(jour: jour)
                     }
                 }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
             }
-            .listStyle(.insetGrouped)
             .navigationTitle(titreSemaine)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
-                    Button("Semaine précédente", systemImage: "chevron.left") {
-                        changerSemaine(de: -1)
-                    }
-                    Button("Semaine suivante", systemImage: "chevron.right") {
-                        changerSemaine(de: 1)
-                    }
+                    boutonsSemaine
+                }
+                ToolbarItemGroup(placement: .primaryAction) {
+                    Button("Ajouter", systemImage: "plus") { feuille = .ajoutActivite }
+                    Button("Lieu", systemImage: "mappin") { feuille = .rechercheLieu }
                 }
                 #if DEBUG
                 ToolbarItem(placement: .topBarTrailing) {
@@ -50,25 +51,44 @@ struct SemaineView: View {
                 }
                 #endif
             }
+            .sheet(item: $feuille) { feuille in
+                switch feuille {
+                case .ajoutActivite: AjoutActiviteView(dateInitiale: lundi)
+                case .rechercheLieu: RechercheLieuView()
+                }
+            }
+            // À chaque changement de semaine : les 7 jours existent, même vides
+            .task(id: lundi) {
+                context.preparerSemaine(commencantLe: lundi)
+            }
         }
     }
 
     private var titreSemaine: String {
         let fin = Calendar.current.date(byAdding: .day, value: 6, to: lundi)!
-        let f = Date.FormatStyle().day().month(.abbreviated)
+        let f = Date.FormatStyle(locale: Locale(identifier: "fr_FR")).day().month(.abbreviated)
         return "\(lundi.formatted(f)) – \(fin.formatted(f))"
     }
 
     private func changerSemaine(de nombre: Int) {
         lundi = Calendar.current.date(byAdding: .weekOfYear, value: nombre, to: lundi)!
     }
+
+    @ViewBuilder
+    private var boutonsSemaine: some View {
+        Button("Semaine précédente", systemImage: "chevron.left") {
+            changerSemaine(de: -1)
+        }
+        Button("Semaine suivante", systemImage: "chevron.right") {
+            changerSemaine(de: 1)
+        }
+    }
 }
 
 extension Date {
-    /// Le lundi (à minuit) de la semaine qui contient cette date.
     var lundiDeLaSemaine: Date {
         var cal = Calendar(identifier: .gregorian)
-        cal.firstWeekday = 2 // lundi
+        cal.firstWeekday = 2
         return cal.dateInterval(of: .weekOfYear, for: self)!.start
     }
 }
