@@ -18,7 +18,7 @@ struct StatutBadge: View {
                       systemImage: activite.statut == .reserve ? "checkmark.circle.fill" : "exclamationmark.circle")
                     .font(.caption.bold())
                     .padding(.horizontal, 8).padding(.vertical, 4)
-                    .background(couleur.opacity(0.15), in: .capsule)
+                    .background(.white.opacity(0.85), in: .capsule)
                     .foregroundStyle(couleur)
             }
             .buttonStyle(.plain)

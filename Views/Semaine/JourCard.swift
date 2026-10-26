@@ -4,9 +4,6 @@ struct JourCard: View {
     let jour: Jour
     
 
-    
-   
-   
     var body: some View {
       
         
@@ -61,7 +58,7 @@ struct JourCard: View {
                     Text(type.heure).font(.caption).foregroundStyle(.secondary)
                 }
             } icon: {
-                Image(systemName: type == .midi ? "fork.knife" : "carrot")
+                Image(systemName: type == .midi ? "fork.knife" : "birthday.cake")
             }
         }
     }
