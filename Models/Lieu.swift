@@ -1,5 +1,9 @@
 import Foundation
 import SwiftData
+import MapKit
+import Foundation
+import SwiftData
+import MapKit
 
 /// Une "fiche" réutilisable : la Ferme des Gondoles revient d'un mois à l'autre.
 @Model
@@ -10,6 +14,9 @@ final class Lieu {
     var prix: String
     var infoReservation: String
     var details: String
+
+    /// L'identifiant du lieu dans Apple Plans (nil pour "Chez toi", etc.).
+    @Attribute(.codable) var mapItemIdentifier: MKMapItem.Identifier? = nil
 
     @Relationship(inverse: \Activite.lieu)
     var activites: [Activite] = []

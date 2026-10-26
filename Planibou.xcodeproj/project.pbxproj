@@ -18,6 +18,7 @@
 		7351EE1E30852C020015B175 /* StatutBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE1030852C020015B175 /* StatutBadge.swift */; };
 		7351EE1F30852C020015B175 /* SemaineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE1330852C020015B175 /* SemaineView.swift */; };
 		7351EE2030852C020015B175 /* ArticleCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0830852C020015B175 /* ArticleCourses.swift */; };
+		73771178308F6CAA0074F3EB /* AutocompletionLieux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73771177308F6CAA0074F3EB /* AutocompletionLieux.swift */; };
 		738FFB32308E58E9000DD1C7 /* ScriptIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738FFB31308E58E9000DD1C7 /* ScriptIdentifier.swift */; };
 		738FFB34308E72B5000DD1C7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 738FFB33308E72B5000DD1C7 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
@@ -35,6 +36,7 @@
 		7351EE1030852C020015B175 /* StatutBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatutBadge.swift; sourceTree = "<group>"; };
 		7351EE1230852C020015B175 /* JourCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourCard.swift; sourceTree = "<group>"; };
 		7351EE1330852C020015B175 /* SemaineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemaineView.swift; sourceTree = "<group>"; };
+		73771177308F6CAA0074F3EB /* AutocompletionLieux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompletionLieux.swift; sourceTree = "<group>"; };
 		738FFB31308E58E9000DD1C7 /* ScriptIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptIdentifier.swift; sourceTree = "<group>"; };
 		738FFB33308E72B5000DD1C7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -43,6 +45,11 @@
 		7351EE21308547DB0015B175 /* Notification */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Notification;
+			sourceTree = "<group>";
+		};
+		7377117B308F8B830074F3EB /* Lieux */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Lieux;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -103,6 +110,7 @@
 				7351EE0E30852C020015B175 /* DonneesTest.swift */,
 				7351EE21308547DB0015B175 /* Notification */,
 				738FFB31308E58E9000DD1C7 /* ScriptIdentifier.swift */,
+				73771177308F6CAA0074F3EB /* AutocompletionLieux.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -127,6 +135,7 @@
 		7351EE1530852C020015B175 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7377117B308F8B830074F3EB /* Lieux */,
 				7351EE1130852C020015B175 /* Composants */,
 				7351EE1430852C020015B175 /* Semaine */,
 			);
@@ -148,6 +157,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				7351EE21308547DB0015B175 /* Notification */,
+				7377117B308F8B830074F3EB /* Lieux */,
 			);
 			name = Planibou;
 			productName = MyApp;
@@ -207,6 +217,7 @@
 				7351EE1730852C020015B175 /* JourCard.swift in Sources */,
 				7351EE1830852C020015B175 /* DonneesTest.swift in Sources */,
 				7351EE1930852C020015B175 /* ProfilBebe.swift in Sources */,
+				73771178308F6CAA0074F3EB /* AutocompletionLieux.swift in Sources */,
 				7351EE1A30852C020015B175 /* PlanningBebeApp.swift in Sources */,
 				7351EE1B30852C020015B175 /* Repas.swift in Sources */,
 				7351EE1C30852C020015B175 /* Lieu.swift in Sources */,
@@ -374,7 +385,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
@@ -416,7 +427,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";

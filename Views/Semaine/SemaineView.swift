@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct SemaineView: View {
+    @State private var afficherRecherche = false
     @Environment(\.modelContext) private var context
     @State private var scriptAffiche: String = "Chargement..."
 
@@ -47,6 +48,12 @@ struct SemaineView: View {
             .listStyle(.insetGrouped)
             .navigationTitle(titreSemaine)
             .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    Button("Ajouter un lieu", systemImage: "mappin.and.ellipse") {
+                        afficherRecherche = true
+                    }
+                }
+                
                 ToolbarItemGroup(placement: .topBarLeading) {
                     Button("Semaine précédente", systemImage: "chevron.left") {
                         changerSemaine(de: -1)
@@ -63,6 +70,9 @@ struct SemaineView: View {
                     }
                 }
                 #endif
+            }
+            .sheet(isPresented: $afficherRecherche) {
+                RechercheLieuView()
             }
         }
     }

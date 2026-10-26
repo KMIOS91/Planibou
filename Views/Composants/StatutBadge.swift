@@ -17,11 +17,11 @@ struct StatutBadge: View {
                 Label(activite.statut.libelle,
                       systemImage: activite.statut == .reserve ? "checkmark.circle.fill" : "exclamationmark.circle")
                     .font(.caption.bold())
-                    .padding(.horizontal, 8).padding(.vertical, 4)
+                    .padding()
                     .background(couleur.opacity(0.15), in: .capsule)
                     .foregroundStyle(couleur)
             }
-            .buttonStyle(.plain)
+            .buttonStyle(.borderless)
         }
     }
 

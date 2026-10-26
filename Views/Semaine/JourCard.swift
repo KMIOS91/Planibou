@@ -10,7 +10,7 @@ struct JourCard: View {
             HStack(alignment: .lastTextBaseline) {
                 Text(jour.date.formatted(.dateTime.weekday(.wide)))
                     .font(.title2.bold())
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.black)
                 
                 Spacer()
                 
@@ -61,7 +61,7 @@ struct JourCard: View {
                 
                 Text(repas?.intitule ?? "—")
                     .font(.body)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.blue)
                     .multilineTextAlignment(.leading)
             }
             Spacer()
@@ -77,11 +77,23 @@ struct JourCard: View {
                 .foregroundStyle(.secondary)
                 .tracking(1)
             
+            
             if let activite = jour.activite {
                 VStack(alignment: .leading, spacing: 6) {
-                    Label(activite.titre, systemImage: "figure.and.child.holdinghands")
-                        .font(.body.weight(.medium))
-                        .foregroundStyle(.white)
+                    
+                    if let lieu = activite.lieu {
+                        NavigationLink {
+                            LieuDetailView(lieu: lieu)
+                        } label: {
+                            Label(activite.titre, systemImage: "figure.and.child.holdinghands")
+                                .font(.body.weight(.medium))
+                        }
+                    } else {
+                        Label(activite.titre, systemImage: "figure.and.child.holdinghands")
+                            .font(.body.weight(.medium))
+                    }
+                    
+                    
                     HStack {
                         Text("\(activite.moment.libelle) · \(activite.heure)")
                             .font(.caption)
@@ -89,18 +101,20 @@ struct JourCard: View {
                         if let prix = activite.lieu?.prix {
                             Text("· \(prix)").font(.caption).foregroundStyle(.secondary)
                         }
-                        Spacer()
-                        StatutBadge(activite: activite)
+                        
+                       
                     }
+                    StatutBadge(activite: activite)
+                       
                 }
             } else {
                 Text("Pas d'activité, journée tranquille")
                     .font(.body.bold())
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.black)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
+        .padding()
         // Conteneur en pointillés pour l'activité conforme au visuel
         .background {
             RoundedRectangle(cornerRadius: 12)
@@ -120,5 +134,5 @@ struct JourCard: View {
                 .padding()
         }
     }
-    .environment(\.colorScheme, .dark) // Force le rendu en mode sombre
+  
 }
