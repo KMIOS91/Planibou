@@ -21,6 +21,7 @@ struct AjoutActiviteView: View {
     @State private var date: Date
     @State private var moment: Moment = .matin
     @State private var heure: Date = AjoutActiviteView.heure(10, 0)
+    @State private var dureeMinutes = 60
     @State private var statut: StatutReservation = .aucune
     @State private var lieu: Lieu?
 

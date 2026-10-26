@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-extension ModelContext {
+extension ModelContext{
     /// Renvoie le Jour de cette date ; le crée s'il n'existe pas.
     func jour(pour date: Date) -> Jour {
         let debut = Calendar.current.startOfDay(for: date)

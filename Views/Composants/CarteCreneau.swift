@@ -6,7 +6,6 @@
 //
 import SwiftUI
 
-/// Une grande carte colorée : titre + début — durée — fin.
 struct CarteCreneau<Accessoire: View>: View {
     let titre: String
     let debut: String

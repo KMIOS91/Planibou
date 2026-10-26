@@ -8,12 +8,8 @@ import SwiftUI
 import SwiftData
 import MapKit
 
-/// La fiche d'un lieu : carte, téléphone, bouton "Y aller", et infos modifiables.
 struct LieuDetailView: View {
-    /// @Bindable : on peut modifier le lieu directement (sauvegarde auto SwiftData).
     @Bindable var lieu: Lieu
-
-    /// Le lieu "complet" rechargé depuis Apple Plans (nil tant que pas chargé).
     @State private var mapItem: MKMapItem?
     @State private var chargement = true
 
@@ -39,8 +35,14 @@ struct LieuDetailView: View {
 
             // 3. Ce que Plans ne sait pas : on le complète à la main
             Section("Prix et réservation") {
-                TextField("Prix", text: $lieu.prix)
-                TextField("Réservation", text: $lieu.infoReservation)
+                LabeledContent("Prix") {
+                    TextField("ex : Gratuit, 9,50 €", text: $lieu.prix)
+                        .multilineTextAlignment(.trailing)
+                }
+                LabeledContent("Réservation") {
+                    TextField("ex : En ligne, sur place…", text: $lieu.infoReservation)
+                        .multilineTextAlignment(.trailing)
+                }
             }
 
             Section("Détails") {

@@ -91,8 +91,8 @@ struct RechercheLieuView: View {
             let lieu = Lieu(nom: item.name ?? suggestion.title,
                             adresse: item.address?.fullAddress ?? suggestion.subtitle,
                             telephone: item.phoneNumber,
-                            prix: "À compléter",
-                            infoReservation: "À vérifier",
+                            prix: "",
+                            infoReservation: "",
                             details: "")
             lieu.mapItemIdentifier = item.identifier
             context.insert(lieu)

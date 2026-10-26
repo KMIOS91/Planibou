@@ -20,7 +20,7 @@
 		7351EE2030852C020015B175 /* ArticleCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0830852C020015B175 /* ArticleCourses.swift */; };
 		73771178308F6CAA0074F3EB /* AutocompletionLieux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73771177308F6CAA0074F3EB /* AutocompletionLieux.swift */; };
 		7377117D308FA1330074F3EB /* AjoutActiviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7377117C308FA1330074F3EB /* AjoutActiviteView.swift */; };
-		73771181308FDB660074F3EB /* ModelContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73771180308FDB660074F3EB /* ModelContext.swift */; };
+		73771181308FDB660074F3EB /* ModelContext+Planning .swift in Sources */ = {isa = PBXBuildFile; fileRef = 73771180308FDB660074F3EB /* ModelContext+Planning .swift */; };
 		73771185308FDDE30074F3EB /* CarteCreneau.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73771184308FDDE30074F3EB /* CarteCreneau.swift */; };
 		73771187308FDE280074F3EB /* Horaires.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73771186308FDE280074F3EB /* Horaires.swift */; };
 		738FFB32308E58E9000DD1C7 /* ScriptIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738FFB31308E58E9000DD1C7 /* ScriptIdentifier.swift */; };
@@ -42,7 +42,7 @@
 		7351EE1330852C020015B175 /* SemaineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemaineView.swift; sourceTree = "<group>"; };
 		73771177308F6CAA0074F3EB /* AutocompletionLieux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompletionLieux.swift; sourceTree = "<group>"; };
 		7377117C308FA1330074F3EB /* AjoutActiviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjoutActiviteView.swift; sourceTree = "<group>"; };
-		73771180308FDB660074F3EB /* ModelContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContext.swift; sourceTree = "<group>"; };
+		73771180308FDB660074F3EB /* ModelContext+Planning .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelContext+Planning .swift"; sourceTree = "<group>"; };
 		73771184308FDDE30074F3EB /* CarteCreneau.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarteCreneau.swift; sourceTree = "<group>"; };
 		73771186308FDE280074F3EB /* Horaires.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Horaires.swift; sourceTree = "<group>"; };
 		738FFB31308E58E9000DD1C7 /* ScriptIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptIdentifier.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 				7351EE21308547DB0015B175 /* Notification */,
 				738FFB31308E58E9000DD1C7 /* ScriptIdentifier.swift */,
 				73771177308F6CAA0074F3EB /* AutocompletionLieux.swift */,
-				73771180308FDB660074F3EB /* ModelContext.swift */,
+				73771180308FDB660074F3EB /* ModelContext+Planning .swift */,
 				73771186308FDE280074F3EB /* Horaires.swift */,
 			);
 			path = Services;
@@ -240,7 +240,7 @@
 				7351EE1F30852C020015B175 /* SemaineView.swift in Sources */,
 				7351EE2030852C020015B175 /* ArticleCourses.swift in Sources */,
 				7377117D308FA1330074F3EB /* AjoutActiviteView.swift in Sources */,
-				73771181308FDB660074F3EB /* ModelContext.swift in Sources */,
+				73771181308FDB660074F3EB /* ModelContext+Planning .swift in Sources */,
 			);
 		};
 /* End PBXSourcesBuildPhase section */
