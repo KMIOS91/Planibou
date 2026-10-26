@@ -1,23 +1,24 @@
 import SwiftUI
+import SwiftData
 
 struct JourCard: View {
     let jour: Jour
-    @State private var scriptAffiche: String = "Chargement..."
+
+    private let francais = Locale(identifier: "fr_FR")
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            // MARK: - Header
+        VStack(alignment: .leading, spacing: 12) {
+            // MARK: - Header (ton design)
             HStack(alignment: .lastTextBaseline) {
-                Text(jour.date.formatted(.dateTime.weekday(.wide)))
+                Text(jour.date.formatted(.dateTime.weekday(.wide).locale(francais)).capitalized)
                     .font(.title2.bold())
-                    .foregroundStyle(.black)
-                
+
                 Spacer()
-                
-                Text(jour.date.formatted(.dateTime.day().month(.abbreviated)))
+
+                Text(jour.date.formatted(.dateTime.day().month(.abbreviated).locale(francais)))
                     .font(.body.bold())
                     .foregroundStyle(.secondary)
-                
+
                 if jour.estWeekEnd {
                     Text("Week-end")
                         .font(.caption.bold())
@@ -27,112 +28,93 @@ struct JourCard: View {
                         .foregroundStyle(.green)
                 }
             }
-            
-            // MARK: - Repas (Midi & Goûter)
-            VStack(spacing: 16) {
-                ligneRepas(jour.midi, type: .midi)
-                ligneRepas(jour.gouter, type: .gouter)
+
+            // MARK: - Repas
+            if let midi = jour.midi, !midi.intitule.isEmpty {
+                carteRepas(midi)
             }
-            
+            if let gouter = jour.gouter, !gouter.intitule.isEmpty {
+                carteRepas(gouter)
+            }
+
             // MARK: - Activité
-            ligneActivite
-        }
-        .padding(20)
-        // Fond sombre de la carte pour correspondre à l'image
-        .background(Color(uiColor: .secondarySystemBackground))
-        .clipShape(.rect(cornerRadius: 16))
-    }
-
-    // MARK: - Ligne de Repas
-    private func ligneRepas(_ repas: Repas?, type: TypeRepas) -> some View {
-        HStack(alignment: .top, spacing: 16) {
-            // Heure alignée à gauche
-            Text(type.heure)
-                .font(.body.bold())
-                .foregroundStyle(.secondary)
-                .frame(width: 75, alignment: .leading)
-            
-            // Détails du repas à droite
-            VStack(alignment: .leading, spacing: 4) {
-                Text(type.libelle.uppercased())
-                    .font(.caption.bold())
-                    .foregroundStyle(.secondary)
-                    .tracking(1) // Espacement des lettres
-                
-                Text(repas?.intitule ?? "—")
-                    .font(.body)
-                    .foregroundStyle(.blue)
-                    .multilineTextAlignment(.leading)
-            }
-            Spacer()
-        }
-    }
-
-    // MARK: - Zone Activité
-    @ViewBuilder
-    private var ligneActivite: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("ACTIVITÉ")
-                .font(.caption.bold())
-                .foregroundStyle(.secondary)
-                .tracking(1)
-            
-            
             if let activite = jour.activite {
-                VStack(alignment: .leading, spacing: 6) {
-                    
-                    if let lieu = activite.lieu {
-                        NavigationLink {
-                            LieuDetailView(lieu: lieu)
-                        } label: {
-                            Label(activite.titre, systemImage: "figure.and.child.holdinghands")
-                                .font(.body.weight(.medium))
-                        }
-                    } else {
-                        Label(activite.titre, systemImage: "figure.and.child.holdinghands")
-                            .font(.body.weight(.medium))
-                    }
-                    
-                    
-                    HStack {
-                        Text("\(activite.moment.libelle) · \(activite.heure)")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                        if let prix = activite.lieu?.prix {
-                            Text("· \(prix)").font(.caption).foregroundStyle(.secondary)
-                        }
-                        
-                       
-                    }
-                    StatutBadge(activite: activite)
-                       
-                }
+                carteActivite(activite)
             } else {
-                Text("Pas d'activité, journée tranquille")
-                    .font(.body.bold())
-                    .foregroundStyle(.black)
+                Label("Pas d'activité, journée tranquille", systemImage: "sofa")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        // Conteneur en pointillés pour l'activité conforme au visuel
-        .background {
-            RoundedRectangle(cornerRadius: 12)
-                .strokeBorder(Color.white.opacity(0.1), style: StrokeStyle(lineWidth: 1, dash: [4]))
+    }
+
+    // MARK: - Carte repas
+
+    private func carteRepas(_ repas: Repas) -> some View {
+        // Le rythme de bébé : midi 11h–12h, goûter 16h–16h15
+        let (debut, fin) = repas.type == .midi ? (11 * 60, 12 * 60) : (16 * 60, 16 * 60 + 15)
+
+        return CarteCreneau(titre: repas.intitule,
+                            debut: Horaire.texte(debut),
+                            fin: Horaire.texte(fin),
+                            duree: Horaire.duree(fin - debut),
+                            couleur: repas.type == .midi ? .sable : .ardoise) {
+            IconeRonde(systemName: repas.type == .midi ? "fork.knife" : "carrot")
+        }
+    }
+
+    // MARK: - Carte activité
+
+    private func carteActivite(_ activite: Activite) -> some View {
+        let debut = Horaire.minutes(depuis: activite.heure) ?? 10 * 60
+        let duree = 60   // provisoire : on ajoutera une vraie durée dans Activite
+        let fin = debut + duree
+
+        return VStack(spacing: 0) {
+            CarteCreneau(titre: activite.titre,
+                         debut: Horaire.texte(debut),
+                         fin: Horaire.texte(fin),
+                         duree: Horaire.duree(duree),
+                         couleur: .sauge) {
+                if activite.statut == .aucune {
+                    IconeRonde(systemName: "figure.and.child.holdinghands")
+                } else {
+                    StatutBadge(activite: activite)
+                }
+            }
+
+            // Le lieu sous la carte → ouvre sa fiche
+            if let lieu = activite.lieu {
+                NavigationLink {
+                    LieuDetailView(lieu: lieu)
+                } label: {
+                    HStack {
+                        Label(lieu.nom, systemImage: "mappin.and.ellipse")
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                    }
+                    .font(.subheadline)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 12)
+                }
+                .tint(.primary)
+            }
         }
     }
 }
 
-// MARK: - Preview Generator
 #Preview {
-    ZStack {
-        // Fond principal de l'application (Noir/Sombre complet)
-        Color(uiColor: .systemBackground).ignoresSafeArea()
-        
-        VStack {
-            JourCard(jour: Jour(date: Date.now))
-                .padding()
-        }
+    let container = try! ModelContainer(
+        for: Jour.self,
+        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+    )
+    let jour = Jour(date: .now)
+    container.mainContext.insert(jour)
+    jour.repas = [Repas(type: .midi, intitule: "Gratin de chou-fleur et poulet"),
+                  Repas(type: .gouter, intitule: "Muffin + fromage blanc")]
+
+    return ScrollView {
+        JourCard(jour: jour).padding()
     }
-  
+    .modelContainer(container)
 }

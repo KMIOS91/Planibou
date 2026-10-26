@@ -106,7 +106,7 @@ struct AjoutActiviteView: View {
     // MARK: - Enregistrer
 
     private func enregistrer() {
-        let jour = trouverOuCreerJour(pour: date)
+        let jour = context.jour(pour: date)
 
         // Une seule activité par jour pour le MVP : on remplace l'ancienne
         if let ancienne = jour.activite {
@@ -123,18 +123,7 @@ struct AjoutActiviteView: View {
         dismiss()
     }
 
-    /// Cherche le Jour de cette date dans la base ; s'il n'existe pas, on le crée.
-    private func trouverOuCreerJour(pour date: Date) -> Jour {
-        let debut = Calendar.current.startOfDay(for: date)
-        let descripteur = FetchDescriptor<Jour>(predicate: #Predicate { $0.date == debut })
-
-        if let existant = try? context.fetch(descripteur).first {
-            return existant
-        }
-        let nouveau = Jour(date: debut)
-        context.insert(nouveau)
-        return nouveau
-    }
+   
 
     // MARK: - Petits outils pour l'heure
 

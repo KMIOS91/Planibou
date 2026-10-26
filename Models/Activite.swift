@@ -40,7 +40,8 @@ final class Activite {
     var momentRaw: String
     var heure: String          // "10h30" — texte libre pour le MVP
     var statutRaw: String
-
+    var dureeMinutes: Int = 60
+    
     var jour: Jour?
     var lieu: Lieu?
 
@@ -57,6 +58,7 @@ final class Activite {
     init(titre: String,
          moment: Moment,
          heure: String,
+         dureeMinutes: Int = 60, 
          statut: StatutReservation = .aucune,
          lieu: Lieu? = nil) {
         self.titre = titre
