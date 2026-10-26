@@ -22,7 +22,7 @@ struct SemaineView: View {
     /// largement suffisant pour un MVP (quelques dizaines de jours).
     @Query(sort: \Jour.date)
     private var jours: [Jour]
-
+    @State private var feuille: FeuilleSemaine?
     @State private var lundi: Date = Date.now.lundiDeLaSemaine
 
     private var joursDeLaSemaine: [Jour] {
