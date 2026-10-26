@@ -10,9 +10,6 @@ enum FeuilleSemaine: Identifiable {
 }
 
 
-
-
-
 struct SemaineView: View {
     @State private var afficherRecherche = false
     @Environment(\.modelContext) private var context
@@ -61,16 +58,10 @@ struct SemaineView: View {
             .navigationTitle(titreSemaine)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
-                    Button("Ajouter", systemImage: "plus") {
-                        afficherAjout = true
-                    }
+                    Button("Ajouter", systemImage: "plus") { feuille = .ajoutActivite }
+                    Button("Lieu", systemImage: "mappin") { feuille = .rechercheLieu }
                 }
-                
-                ToolbarItem(placement: .bottomBar) {
-                    Button("Ajouter un lieu", systemImage: "mappin.and.ellipse") {
-                        afficherRecherche = true
-                    }
-                }
+              
                 
                 ToolbarItemGroup(placement: .topBarLeading) {
                     Button("Semaine précédente", systemImage: "chevron.left") {
@@ -89,12 +80,12 @@ struct SemaineView: View {
                 }
                 #endif
             }
-            .sheet(isPresented: $afficherAjout) {
-                AjoutActiviteView(dateInitiale: lundi)
-            }
-            .sheet(isPresented: $afficherRecherche) {
-                RechercheLieuView()
-            }
+            .sheet(item: $feuille, content: { feuille in
+                switch feuille {
+                   case .ajoutActivite: AjoutActiviteView(dateInitiale: lundi)
+                   case .rechercheLieu: RechercheLieuView()
+                   }
+            })
         }
     }
 
