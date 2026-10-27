@@ -3,7 +3,7 @@ import SwiftUI
 /// Badge cliquable : "À réserver" → "Réservé" d'un tap.
 /// Comme c'est du SwiftData, ça reste sauvegardé (et partageable plus tard avec CloudKit).
 struct StatutBadge: View {
-    @Bindable var activite: Activite
+    @Bindable var activite: activites
 
     var body: some View {
         if activite.statut == .aucune {

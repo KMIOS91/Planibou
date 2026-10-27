@@ -42,21 +42,21 @@ enum DonneesTest {
                           details: "Traite vers 15h30. Aire de jeux et pique-nique.")
 
         // (midi, goûter, activité?)
-        let semaine: [(String, String, Activite?)] = [
+        let semaine: [(String, String, activites?)] = [
             ("Gratin de chou-fleur et poulet", "Muffin + fromage blanc",
-             Activite(titre: "Peinture au yaourt coloré", moment: .matin, heure: "10h00", lieu: maison)),
+             activites(titre: "Peinture au yaourt coloré", moment: .matin, heure: "10h00", lieu: maison)),
             ("Colin, purée panais-pomme de terre", "Banane + biscuit bébé", nil),
             ("Poulet, polenta crémeuse, épinards", "Muffin à la banane",
-             Activite(titre: "Comptines et jeux de doigts", moment: .matin, heure: "10h30",
+             activites(titre: "Comptines et jeux de doigts", moment: .matin, heure: "10h30",
                       statut: .aVerifier, lieu: raconte)),
             ("Pâtes à la bolognaise", "Crêpes",
-             Activite(titre: "Musique avec casseroles", moment: .matin, heure: "10h00", lieu: maison)),
+             activites(titre: "Musique avec casseroles", moment: .matin, heure: "10h00", lieu: maison)),
             ("Saumon, riz, fondue de poireaux", "Tartine + fromage frais",
-             Activite(titre: "Lieu d'accueil enfants-parents", moment: .matin, heure: "10h30",
+             activites(titre: "Lieu d'accueil enfants-parents", moment: .matin, heure: "10h30",
                       statut: .aVerifier, lieu: laep)),
             ("Riz au bœuf, sauce tomate", "Gâteau au yaourt peu sucré", nil),
             ("Poisson blanc, purée de carotte", "Gâteau au yaourt (reste)",
-             Activite(titre: "Ferme La Doudou (sieste plus tôt)", moment: .apresMidi, heure: "15h00",
+             activites(titre: "Ferme La Doudou (sieste plus tôt)", moment: .apresMidi, heure: "15h00",
                       statut: .aVerifier, lieu: doudou)),
         ]
 

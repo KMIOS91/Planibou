@@ -65,7 +65,7 @@ struct JourCard: View {
 
     // MARK: - Carte activité
 
-    private func carteActivite(_ activite: Activite) -> some View {
+    private func carteActivite(_ activite: activites) -> some View {
         let debut = Horaire.minutes(depuis: activite.heure) ?? 10 * 60
         let duree = activite.dureeMinutes   // provisoire : on ajoutera une vraie durée dans Activite
         let fin = debut + duree

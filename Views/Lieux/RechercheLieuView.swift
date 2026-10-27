@@ -106,7 +106,7 @@ struct RechercheLieuView: View {
 
 #Preview {
     RechercheLieuView()
-        .modelContainer(for: [Jour.self, Repas.self, Activite.self, Lieu.self,
+        .modelContainer(for: [Jour.self, Repas.self, activites.self, Lieu.self,
                               ArticleCourses.self, ProfilBebe.self],
                         inMemory: true)
 }

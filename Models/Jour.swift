@@ -10,8 +10,8 @@ final class Jour {
     @Relationship(deleteRule: .cascade, inverse: \Repas.jour)
     var repas: [Repas] = []
 
-    @Relationship(deleteRule: .cascade, inverse: \Activite.jour)
-    var activite: Activite?
+    @Relationship(deleteRule: .cascade, inverse: \activites.jour)
+    var activite: activites?
 
     init(date: Date) {
         self.date = Calendar.current.startOfDay(for: date)

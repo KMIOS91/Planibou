@@ -120,7 +120,7 @@ struct AjoutActiviteView: View {
             context.delete(ancienne)
         }
 
-        let activite = Activite(titre: titre.trimmingCharacters(in: .whitespaces),
+        let activite = activites(titre: titre.trimmingCharacters(in: .whitespaces),
                                 moment: moment,
                                 heure: texteHeure,
                                 dureeMinutes: dureeMinutes,   // ← nouveau
@@ -150,7 +150,7 @@ struct AjoutActiviteView: View {
 
 #Preview {
     AjoutActiviteView()
-        .modelContainer(for: [Jour.self, Repas.self, Activite.self, Lieu.self,
+        .modelContainer(for: [Jour.self, Repas.self, activites.self, Lieu.self,
                               ArticleCourses.self, ProfilBebe.self],
                         inMemory: true)
 }
