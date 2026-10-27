@@ -14,7 +14,7 @@
 		7351EE1A30852C020015B175 /* PlanningBebeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0530852C020015B175 /* PlanningBebeApp.swift */; };
 		7351EE1B30852C020015B175 /* Repas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0C30852C020015B175 /* Repas.swift */; };
 		7351EE1C30852C020015B175 /* Lieu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0A30852C020015B175 /* Lieu.swift */; };
-		7351EE1D30852C020015B175 /* activites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0730852C020015B175 /* activites.swift */; };
+		7351EE1D30852C020015B175 /* Activite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0730852C020015B175 /* Activite.swift */; };
 		7351EE1E30852C020015B175 /* StatutBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE1030852C020015B175 /* StatutBadge.swift */; };
 		7351EE1F30852C020015B175 /* SemaineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE1330852C020015B175 /* SemaineView.swift */; };
 		7351EE2030852C020015B175 /* ArticleCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7351EE0830852C020015B175 /* ArticleCourses.swift */; };
@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		000000000000000000000120 /* Planibou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planibou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7351EE0530852C020015B175 /* PlanningBebeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningBebeApp.swift; sourceTree = "<group>"; };
-		7351EE0730852C020015B175 /* activites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = activites.swift; sourceTree = "<group>"; };
+		7351EE0730852C020015B175 /* Activite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activite.swift; sourceTree = "<group>"; };
 		7351EE0830852C020015B175 /* ArticleCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCourses.swift; sourceTree = "<group>"; };
 		7351EE0930852C020015B175 /* Jour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jour.swift; sourceTree = "<group>"; };
 		7351EE0A30852C020015B175 /* Lieu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lieu.swift; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 		7351EE0D30852C020015B175 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7351EE0730852C020015B175 /* activites.swift */,
+				7351EE0730852C020015B175 /* Activite.swift */,
 				7351EE0830852C020015B175 /* ArticleCourses.swift */,
 				7351EE0930852C020015B175 /* Jour.swift */,
 				7351EE0A30852C020015B175 /* Lieu.swift */,
@@ -234,7 +234,7 @@
 				7351EE1A30852C020015B175 /* PlanningBebeApp.swift in Sources */,
 				7351EE1B30852C020015B175 /* Repas.swift in Sources */,
 				7351EE1C30852C020015B175 /* Lieu.swift in Sources */,
-				7351EE1D30852C020015B175 /* activites.swift in Sources */,
+				7351EE1D30852C020015B175 /* Activite.swift in Sources */,
 				7351EE1E30852C020015B175 /* StatutBadge.swift in Sources */,
 				73771185308FDDE30074F3EB /* CarteCreneau.swift in Sources */,
 				7351EE1F30852C020015B175 /* SemaineView.swift in Sources */,

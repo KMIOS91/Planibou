@@ -114,13 +114,8 @@ struct AjoutActiviteView: View {
 
     private func enregistrer() {
         let jour = context.jour(pour: date)
-
-        // Une seule activité par jour pour le MVP : on remplace l'ancienne
-        if let ancienne = jour.activite {
-            context.delete(ancienne)
-        }
-
-        let activite = activites(titre: titre.trimmingCharacters(in: .whitespaces),
+      
+        let activite = Activite(titre: titre.trimmingCharacters(in: .whitespaces),
                                 moment: moment,
                                 heure: texteHeure,
                                 dureeMinutes: dureeMinutes,   // ← nouveau
@@ -128,7 +123,7 @@ struct AjoutActiviteView: View {
                                 lieu: lieu)
         
         context.insert(activite)
-        jour.activite = activite
+        jour.activites.append(activite)
         dismiss()
     }
 
@@ -150,7 +145,7 @@ struct AjoutActiviteView: View {
 
 #Preview {
     AjoutActiviteView()
-        .modelContainer(for: [Jour.self, Repas.self, activites.self, Lieu.self,
+        .modelContainer(for: [Jour.self, Repas.self, Activite.self, Lieu.self,
                               ArticleCourses.self, ProfilBebe.self],
                         inMemory: true)
 }

@@ -7,7 +7,7 @@ import MapKit
 enum DonneesTest {
 
     static let lundi: Date = {
-        Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 12))!
+        Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 26))!
     }()
 
     static func charger(in context: ModelContext) {
@@ -42,31 +42,35 @@ enum DonneesTest {
                           details: "Traite vers 15h30. Aire de jeux et pique-nique.")
 
         // (midi, goûter, activité?)
-        let semaine: [(String, String, activites?)] = [
+        let semaine: [(String, String, Activite?)] = [
             ("Gratin de chou-fleur et poulet", "Muffin + fromage blanc",
-             activites(titre: "Peinture au yaourt coloré", moment: .matin, heure: "10h00", lieu: maison)),
+             Activite(titre: "Peinture au yaourt coloré", moment: .matin, heure: "10h00", lieu: maison)),
             ("Colin, purée panais-pomme de terre", "Banane + biscuit bébé", nil),
             ("Poulet, polenta crémeuse, épinards", "Muffin à la banane",
-             activites(titre: "Comptines et jeux de doigts", moment: .matin, heure: "10h30",
+             Activite(titre: "Comptines et jeux de doigts", moment: .matin, heure: "10h30",
                       statut: .aVerifier, lieu: raconte)),
             ("Pâtes à la bolognaise", "Crêpes",
-             activites(titre: "Musique avec casseroles", moment: .matin, heure: "10h00", lieu: maison)),
+             Activite(titre: "Musique avec casseroles", moment: .matin, heure: "10h00", lieu: maison)),
             ("Saumon, riz, fondue de poireaux", "Tartine + fromage frais",
-             activites(titre: "Lieu d'accueil enfants-parents", moment: .matin, heure: "10h30",
+             Activite(titre: "Lieu d'accueil enfants-parents", moment: .matin, heure: "10h30",
                       statut: .aVerifier, lieu: laep)),
             ("Riz au bœuf, sauce tomate", "Gâteau au yaourt peu sucré", nil),
             ("Poisson blanc, purée de carotte", "Gâteau au yaourt (reste)",
-             activites(titre: "Ferme La Doudou (sieste plus tôt)", moment: .apresMidi, heure: "15h00",
+             Activite(titre: "Ferme La Doudou (sieste plus tôt)", moment: .apresMidi, heure: "15h00",
                       statut: .aVerifier, lieu: doudou)),
         ]
 
         for (index, (midi, gouter, activite)) in semaine.enumerated() {
             let date = Calendar.current.date(byAdding: .day, value: index, to: lundi)!
             let jour = Jour(date: date)
+            
             context.insert(jour)
             jour.repas = [Repas(type: .midi, intitule: midi),
                           Repas(type: .gouter, intitule: gouter)]
-            jour.activite = activite
+            if let activite {
+                jour.activites.append(activite)
+               
+            }
         }
 
         do {

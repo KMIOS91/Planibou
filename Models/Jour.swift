@@ -10,8 +10,8 @@ final class Jour {
     @Relationship(deleteRule: .cascade, inverse: \Repas.jour)
     var repas: [Repas] = []
 
-    @Relationship(deleteRule: .cascade, inverse: \activites.jour)
-    var activite: activites?
+    @Relationship(deleteRule: .cascade, inverse: \Activite.jour)
+    var activites : [Activite] = []
 
     init(date: Date) {
         self.date = Calendar.current.startOfDay(for: date)
@@ -22,7 +22,17 @@ final class Jour {
     var midi: Repas? { repas.first { $0.type == .midi } }
     var gouter: Repas? { repas.first { $0.type == .gouter } }
 
+    
+    // Les activités triées par heure (10h00 avant 15h30).
+    var activitesTriees: [Activite] {
+        activites.sorted {
+            (Horaire.minutes(depuis: $0.heure) ?? 0) < (Horaire.minutes(depuis: $1.heure) ?? 0)
+        }
+    }
+    
     var estWeekEnd: Bool {
         Calendar.current.isDateInWeekend(date)
     }
+    
+  
 }

@@ -12,7 +12,7 @@ struct PlanningBebeApp: App {
         .modelContainer(for: [
             Jour.self,
             Repas.self,
-            activites.self,
+            Activite.self,
             Lieu.self,
             ArticleCourses.self,
             ProfilBebe.self

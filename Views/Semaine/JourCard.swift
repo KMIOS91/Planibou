@@ -38,12 +38,14 @@ struct JourCard: View {
             }
 
             // MARK: - Activité
-            if let activite = jour.activite {
-                carteActivite(activite)
-            } else {
+            if jour.activites.isEmpty {
                 Label("Pas d'activité, journée tranquille", systemImage: "sofa")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
+            } else {
+                ForEach(jour.activitesTriees) { activite in
+                    carteActivite(activite)
+                }
             }
         }
     }
@@ -65,7 +67,7 @@ struct JourCard: View {
 
     // MARK: - Carte activité
 
-    private func carteActivite(_ activite: activites) -> some View {
+    private func carteActivite(_ activite: Activite) -> some View {
         let debut = Horaire.minutes(depuis: activite.heure) ?? 10 * 60
         let duree = activite.dureeMinutes   // provisoire : on ajoutera une vraie durée dans Activite
         let fin = debut + duree

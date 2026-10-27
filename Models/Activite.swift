@@ -35,7 +35,7 @@ enum StatutReservation: String, Codable, CaseIterable {
 }
 
 @Model
-final class activites {
+final class Activite {
     var titre: String
     var momentRaw: String
     var heure: String          // "10h30" — texte libre pour le MVP

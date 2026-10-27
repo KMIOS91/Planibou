@@ -18,8 +18,8 @@ final class Lieu {
     /// L'identifiant du lieu dans Apple Plans (nil pour "Chez toi", etc.).
     @Attribute(.codable) var mapItemIdentifier: MKMapItem.Identifier? = nil
 
-    @Relationship(inverse: \activites.lieu)
-    var activites: [activites] = []
+    @Relationship(inverse: \Activite.lieu)
+    var activites: [Activite] = []
 
     init(nom: String,
          adresse: String,
