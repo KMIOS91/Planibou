@@ -58,12 +58,13 @@ final class Activite {
     init(titre: String,
          moment: Moment,
          heure: String,
-         dureeMinutes: Int = 60, 
+         dureeMinutes: Int = 60,
          statut: StatutReservation = .aucune,
          lieu: Lieu? = nil) {
         self.titre = titre
         self.momentRaw = moment.rawValue
         self.heure = heure
+        self.dureeMinutes = dureeMinutes  
         self.statutRaw = statut.rawValue
         self.lieu = lieu
     }

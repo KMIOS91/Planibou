@@ -7,7 +7,7 @@ import MapKit
 enum DonneesTest {
 
     static let lundi: Date = {
-        Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 12))!
+        Calendar.current.date(from: DateComponents(year: 2026, month: 10, day: 26))!
     }()
 
     static func charger(in context: ModelContext) {
@@ -63,10 +63,14 @@ enum DonneesTest {
         for (index, (midi, gouter, activite)) in semaine.enumerated() {
             let date = Calendar.current.date(byAdding: .day, value: index, to: lundi)!
             let jour = Jour(date: date)
+            
             context.insert(jour)
             jour.repas = [Repas(type: .midi, intitule: midi),
                           Repas(type: .gouter, intitule: gouter)]
-            jour.activite = activite
+            if let activite {
+                jour.activites.append(activite)
+               
+            }
         }
 
         do {

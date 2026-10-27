@@ -56,12 +56,17 @@ struct JourCard: View {
                 Image(systemName: type == .midi ? "fork.knife" : "birthday.cake")
 =======
             // MARK: - Activité
-            if let activite = jour.activite {
-                carteActivite(activite)
-            } else {
+            if jour.activites.isEmpty {
                 Label("Pas d'activité, journée tranquille", systemImage: "sofa")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
+<<<<<<< HEAD
+>>>>>>> home
+=======
+            } else {
+                ForEach(jour.activitesTriees) { activite in
+                    carteActivite(activite)
+                }
 >>>>>>> home
             }
         }
@@ -78,7 +83,7 @@ struct JourCard: View {
                             fin: Horaire.texte(fin),
                             duree: Horaire.duree(fin - debut),
                             couleur: repas.type == .midi ? .sable : .ardoise) {
-            IconeRonde(systemName: repas.type == .midi ? "fork.knife" : "carrot")
+            IconeRonde(systemName: repas.type == .midi ? "fork.knife" : "birthday.cake")
         }
     }
 
